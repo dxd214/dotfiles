@@ -1,7 +1,6 @@
 # dot files.
 
 - [x] .tmux.conf
-
 - [x] .vimrc
 
 
