@@ -25,11 +25,20 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
+# Set personal aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias cd.='cd ..'
+alias cd..='cd ..'
+alias l='ls -alF'
+alias ll='ls -l'
+# alias vi='vim'
+alias hc="history -c"
+alias which='type -p'
+alias gs='git status'
 alias c=clear
 
 # golang env
@@ -46,15 +55,7 @@ eval "$(rbenv init -)"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# thefuck
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
-
 # tmuxinator
 source ~/.tmuxinator/completion/tmuxinator.zsh
 alias mux=tmuxinator
 
-# theme Pure
-# autoload -U promptinit; promptinit
-# PURE_GIT_PULL=0
-# prompt pure
