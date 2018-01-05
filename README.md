@@ -2,6 +2,7 @@
 
 - [x] .tmux.conf
 - [x] .vimrc
+- [x] .zshrc
 
 
 #### Thanks to
