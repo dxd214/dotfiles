@@ -2,7 +2,7 @@
 export TERM="xterm-256color"
 
 # zprezto
-source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+source "${ZDOTDIR:-$HOME}/dotfiles/prezto/init.zsh"
 
 # User configuration
 
@@ -46,6 +46,9 @@ alias gc='git checkout'
 alias gcb='git checkout -b'
 alias gcm='git checkout master'
 alias gcd='git checkout develop 2>/dev/null || git checkout master'
+alias gcam='git commit -a -m'
+alias gcsm='git commit -s -m'
+alias gcmsg='git commit -m'
 alias gmd='git merge origin/develop'
 alias gd='git diff --color'
 alias gdc='git diff --cached'
