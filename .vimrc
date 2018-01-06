@@ -1,4 +1,4 @@
-" vim: set foldmethod=marker foldlevel=0 nomodeline:
+" vim: set foldmethod=marker foldlevel=2 nomodeline:
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                vimrc for mjyi                              "
@@ -27,7 +27,7 @@ set nrformats=hex
 set number
 set scrolloff=5
 set shiftround
-set shortmess=a
+set shortmess=aIT
 set showcmd
 set showtabline=2
 set sidescrolloff=3
@@ -470,10 +470,6 @@ nnoremap <Leader>G :Goyo<CR>
 """ markdown  {{{
 """ Use command `:InstantMarkdownPreview` to trigger preview
 let g:instant_markdown_autostart = 0
-
-
-"" vim-markdown
-let g:vim_markdown_folding_disabled = 1
 
 "" }}}
 
