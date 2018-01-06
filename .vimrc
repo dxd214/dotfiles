@@ -20,7 +20,7 @@ set lazyredraw
 set list
 set listchars=tab:»·,trail:·,nbsp:·
 set mouse=a
-" set noshowmode
+set noshowmode
 set nostartofline
 set noswapfile
 set nrformats=hex
@@ -84,6 +84,7 @@ Plug 'fatih/vim-go'
 Plug 'elzr/vim-json'
 Plug 'keith/swift.vim', {'for': 'swift'}
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
+
 
 "   Autocomplete
 if has('nvim')
@@ -466,12 +467,17 @@ nnoremap <Leader>G :Goyo<CR>
 
 "" }}}
 
-""" instant_markdown  {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" markdown  {{{
 """ Use command `:InstantMarkdownPreview` to trigger preview
 let g:instant_markdown_autostart = 0
 
+
+"" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
 "" }}}
+
+
 
 """ EasyMotion {{{
 nmap s <Plug>(easymotion-s2)
