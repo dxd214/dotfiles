@@ -25,6 +25,7 @@ fi
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases
+alias vim=nvim
 alias c=clear
 alias ..='cd ..'
 alias ...='cd ../..'

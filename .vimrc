@@ -40,64 +40,59 @@ set incsearch
 set autoindent
 set smartindent
 set backspace=indent,eol,start
-
+set laststatus=2
 " }}}
 
 """  Plugins {{{
 
 call plug#begin('~/.vim/plugged')
-"   Look & feel
 Plug 'morhetz/gruvbox'                                                "   color theme
 Plug 'junegunn/seoul256.vim'
 Plug 'mhinz/vim-startify'
+Plug 'itchyny/lightline.vim'                                          "   bottom bar
+Plug 'mgee/lightline-bufferline'                                      "   top bar
 
-"   Manipulate code
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
-
-"   Format Code
 Plug 'junegunn/vim-easy-align'
 Plug 'AndrewRadev/splitjoin.vim'                                      "   Struct split and join
 
-"   Render Code
 Plug 'junegunn/goyo.vim'
 Plug 'suan/vim-instant-markdown',
       \ { 'do': 'npm -g install instant-markdown-d' }                 "   Instantly preview markdown
 Plug 'tpope/vim-commentary'
 Plug 'benizi/vim-automkdir'
 
-"   Navigate files, buffers and panes with fzf. Require ag.
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
-"   Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'w0rp/ale'                                   "   Lint Code
 
-"   Lint Code
-Plug 'w0rp/ale'
-
-"   Language
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go'
 Plug 'elzr/vim-json'
 Plug 'keith/swift.vim', {'for': 'swift'}
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 
-
-"   Autocomplete
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocomplete engine
-  Plug 'Shougo/neco-syntax'
-  Plug 'Shougo/neco-vim', {'for': 'vim'}                        " Vim
-  Plug 'wellle/tmux-complete.vim'                               " tmux panes
-  Plug 'thalesmello/webcomplete.vim', {'commit': '410e17'}      " chrome
-  Plug 'mitsuse/autocomplete-swift'                             " Swift
-  " Plug 'Shougo/deoplete-rct'                                    " Ruby
-  " Plug 'zchee/deoplete-jedi'                                    " Python
-  Plug 'zchee/deoplete-go', { 'do': 'make'}                     " Golang
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'Shougo/neco-syntax'
+Plug 'Shougo/neco-vim', {'for': 'vim'}                        " Vim
+Plug 'wellle/tmux-complete.vim'                               " tmux panes
+Plug 'thalesmello/webcomplete.vim', {'commit': '410e17'}      " chrome
+Plug 'mitsuse/autocomplete-swift'                             " Swift
+Plug 'zchee/deoplete-jedi'                                    " Python
+Plug 'zchee/deoplete-go', { 'do': 'make'}                     " Golang
 autocmd FileType c,cpp let b:deoplete_disable_auto_complete = 1
 
 function! BuildYCM(info)
@@ -107,7 +102,6 @@ function! BuildYCM(info)
 endfunction
 Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp'], 'do': function('BuildYCM') }
 
-"
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 augroup nerd_loader
   autocmd!
@@ -118,23 +112,12 @@ augroup nerd_loader
 	\|   execute 'autocmd! nerd_loader'
 	\| endif
 augroup END
-
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
-
-"Snippets
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-" Plug 'honza/vim-snippets'
-
-" Motion
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
-
-""Tool
-Plug 'tweekmonster/startuptime.vim'
 
 call plug#end()
 "" }}}
@@ -170,9 +153,9 @@ nnoremap <leader>s :update<cr>
 nnoremap <leader>w :update<cr>
 
 " Quit
-inoremap <C-Q>     <esc>:q<cr>
-nnoremap <C-Q>     :q<cr>
-vnoremap <C-Q>     <esc>
+inoremap <C-q>     <esc>:q<cr>
+nnoremap <C-q>     :q<cr>
+vnoremap <C-q>     <esc>
 nnoremap <Leader>q :q<cr>
 nnoremap <Leader>Q :qa!<cr>
 
@@ -192,7 +175,6 @@ nnoremap <S-tab> <c-w>W
 
 "  Change tab size
 nnoremap <silent><Leader>cst :setlocal ts=4 sts=4 noet <bar> retab! <bar> setlocal ts=2 sts=2 et <bar> retab<CR>
-
 " Remove all trailing whitespace
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
@@ -200,24 +182,131 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 
 """ colorscheme {{{
 
-" let g:gruvbox_bold = 0
-" let g:gruvbox_contrast_dark = 'soft'
 set background=dark
-let g:seoul256_background = 236
+let g:seoul256_background = 237
 colorscheme seoul256
 
-"" Statusline
-function! s:statusline_expr()
-  let mod = "%{&modified ? '[+] ' : !&modifiable ? '[x] ' : ''}"
-  let ro  = "%{&readonly ? '' : ''}"
-  let ft  = "%{len(&filetype) ? '['.&filetype.'] ' : ''}"
-  let fug = "%{exists('g:loaded_fugitive') ? fugitive#statusline() : ''}"
-  let sep = ' %= '
-  let pos = ' %-12(%l:%c%V%) '
-  let pct = ' %P'
-  return '[%n] %F %<'.mod.ro.ft.fug.sep.pos.'%*'.pct
+"" }}}
+
+""" lightline {{{
+" \ 'separator': { 'left': '⮀', 'right': '' },
+" \ 'subseparator': { 'left': '', 'right': '' },
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'fugitive' ], ['cwd'] ],
+      \   'right': [ [ 'lineinfo' ], ['percent'], ["filetype"] ]
+      \ },
+      \ 'tabline': {
+      \   'left': [ [ 'buffers' ] ],
+      \   'right': [ [ 'close' ] ],
+      \ },
+      \ 'mode_map': {
+      \   'n' : 'N',
+      \   'i' : 'I',
+      \   'R' : 'R',
+      \   'v' : 'V',
+      \   'V' : 'V-LINE',
+      \   "\<C-v>": 'V-BLOCK',
+      \   'c' : 'C',
+      \   's' : 'S',
+      \   'S' : 'S-LINE',
+      \   "\<C-s>": 'S-BLOCK',
+      \   't': '',
+      \ },
+      \ 'component': {
+      \   'lineinfo': '⭡%3l:%-2v',
+      \   'cwd': '%{fnamemodify(getcwd(), ":~")}',
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightlineFugitive',
+      \   'filename': 'LightlineFilename',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileencoding': 'LightlineFileencoding',
+      \   'mode': 'LightlineMode',
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers',
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel',
+      \   'trailing': 'error',
+      \ }
+      \ }
+
+function! LightlineModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
-let &statusline = s:statusline_expr()
+
+
+function! LightlineFilename()
+  let fname = expand('%:t')
+  return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+	\ fname == '__Tagbar__' ? g:lightline.fname :
+	\ fname =~ '__Gundo\|NERD_tree' ? '' :
+	\ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+	\ &ft == 'unite' ? unite#get_status_string() :
+	\ &ft == 'vimshell' ? vimshell#get_status_string() :
+	\ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+	\ ('' != fname ? fname : '[No Name]') .
+	\ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineReadonly()
+  return &readonly ? '' : ''
+endfunction
+
+function! LightlineFugitive()
+  try
+    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+      let mark = '⭠'  " edit here for cool mark
+      let branch = fugitive#head()
+      return branch !=# '' ? mark.branch : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+	\ fname == '__Gundo__' ? 'Gundo' :
+	\ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+	\ fname =~ 'NERD_tree' ? 'NERDTree' :
+	\ &ft == 'unite' ? 'Unite' :
+	\ &ft == 'vimfiler' ? 'VimFiler' :
+	\ &ft == 'vimshell' ? 'VimShell' :
+	\ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+let g:tagbar_status_func = 'TagbarStatusFunc'
+
+function! TagbarStatusFunc(current, sort, fname, ...) abort
+  let g:lightline.fname = a:fname
+  return lightline#statusline(0)
+endfunction
+
+"""" lightline-bufferline
+let g:lightline#bufferline#filename_modifier = ':~:.' " Show filename relative to current directory
+let g:lightline#bufferline#unicode_symbols = 1        " Use fancy unicode symbols for various indicators
+let g:lightline#bufferline#modified = ''             " Default pencil is too ugly
+let g:lightline#bufferline#unnamed = '[No Name]'      " Default name when no buffer is opened
+let g:lightline#bufferline#shorten_path = 0           " Don't compress ~/my/folder/name to ~/m/f/n
+
 "" }}}
 
 """ Startify  {{{
@@ -307,17 +396,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               iCompleteMe                                  "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:icm_min_num_of_chars_for_completion = 1
-" let g:icm_auto_trigger = 0
-" let g:icm_show_diagnostics_ui = 0
-" let g:icm_key_invoke_completion = '<C-space>'
-" let g:icm_key_detailed_diagnostics = '<leader>d'
-" let g:icm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               YouCompleteMe                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_show_diagnostics_ui = 0
@@ -328,7 +407,6 @@ let g:ycm_global_ycm_extra_conf = ''
 """ FZF  {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make :Ag not match file names, only file contents
-"command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 command! -bang -nargs=* Ag
       \ call fzf#vim#ag(<q-args>,
       \                 <bang>0 ? fzf#vim#with_preview('up:60%')
@@ -472,8 +550,6 @@ nnoremap <Leader>G :Goyo<CR>
 let g:instant_markdown_autostart = 0
 
 "" }}}
-
-
 
 """ EasyMotion {{{
 nmap s <Plug>(easymotion-s2)
