@@ -316,7 +316,6 @@ nnoremap <F4> :Startify<cr>
 "" }}}
 
 """ NERDTree   {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F2> :NERDTreeToggle<CR>
 map <leader>e :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeFind<CR>
@@ -330,7 +329,6 @@ let NERDTreeMouseMode=2
 "" }}}
 
 """ Tagbar {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <F3> :TagbarToggle<cr>
 let g:tagbar_width     = 40
 let g:tagbar_autoclose = 0
@@ -405,7 +403,6 @@ let g:ycm_global_ycm_extra_conf = ''
 "" }}}
 
 """ FZF  {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make :Ag not match file names, only file contents
 command! -bang -nargs=* Ag
       \ call fzf#vim#ag(<q-args>,
@@ -435,7 +432,6 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 "" }}}
 
 """ ALE {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:ale_sign_error = '>'
 " let g:ale_sign_warning = '-'
 let g:ale_completion_enabled = 1
@@ -454,9 +450,6 @@ nmap [a <Plug>(ale_previous_wrap)
 "" }}}
 
 """ vim-go {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                   vim-go                                   "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:go_fmt_autosave = 0
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
@@ -514,7 +507,6 @@ endfunction
 "" }}}
 
 """ Goyo  {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! s:goyo_enter()
   if has('gui_running')
     set fullscreen
