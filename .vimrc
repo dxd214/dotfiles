@@ -41,58 +41,67 @@ set autoindent
 set smartindent
 set backspace=indent,eol,start
 set laststatus=2
+
+set completeopt+=noselect
+set completeopt+=noinsert
+set completeopt-=preview
+"" For Nvim
+let g:python_host_skip_check=1
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_skip_check=1
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 " }}}
 
 """  Plugins {{{
 
 call plug#begin('~/.vim/plugged')
-Plug 'morhetz/gruvbox'                                                "   color theme
+Plug 'morhetz/gruvbox'
 Plug 'junegunn/seoul256.vim'
 Plug 'mhinz/vim-startify'
-Plug 'itchyny/lightline.vim'                                          "   bottom bar
-Plug 'mgee/lightline-bufferline'                                      "   top bar
+Plug 'itchyny/lightline.vim'
+Plug 'mgee/lightline-bufferline'
 
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'Raimondi/delimitMate'
 Plug 'junegunn/vim-easy-align'
-Plug 'AndrewRadev/splitjoin.vim'                                      "   Struct split and join
+Plug 'AndrewRadev/splitjoin.vim'
 
-Plug 'junegunn/goyo.vim'
 Plug 'suan/vim-instant-markdown',
-      \ { 'do': 'npm -g install instant-markdown-d' }                 "   Instantly preview markdown
+      \ { 'do': 'npm -g install instant-markdown-d' }
 Plug 'tpope/vim-commentary'
-Plug 'benizi/vim-automkdir'
+Plug 'duggiefresh/vim-easydir'
 
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'w0rp/ale'                                   "   Lint Code
+Plug 'w0rp/ale'
 
+" For syntax highlight
 Plug 'cespare/vim-toml'
 Plug 'fatih/vim-go'
 Plug 'elzr/vim-json'
 Plug 'keith/swift.vim', {'for': 'swift'}
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 
+Plug 'Chiel92/vim-autoformat'
+
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocomplete engine
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'Shougo/neco-syntax'
-Plug 'Shougo/neco-vim', {'for': 'vim'}                        " Vim
-Plug 'wellle/tmux-complete.vim'                               " tmux panes
-Plug 'thalesmello/webcomplete.vim', {'commit': '410e17'}      " chrome
-Plug 'mitsuse/autocomplete-swift'                             " Swift
-Plug 'zchee/deoplete-jedi'                                    " Python
-Plug 'zchee/deoplete-go', { 'do': 'make'}                     " Golang
+Plug 'Shougo/neco-vim', {'for': 'vim'}
+Plug 'thalesmello/webcomplete.vim', {'commit': '410e17'}
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 autocmd FileType c,cpp let b:deoplete_disable_auto_complete = 1
 
 function! BuildYCM(info)
@@ -102,6 +111,7 @@ function! BuildYCM(info)
 endfunction
 Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp'], 'do': function('BuildYCM') }
 
+Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 augroup nerd_loader
   autocmd!
@@ -112,7 +122,6 @@ augroup nerd_loader
 	\|   execute 'autocmd! nerd_loader'
 	\| endif
 augroup END
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -305,7 +314,7 @@ let g:lightline#bufferline#filename_modifier = ':~:.' " Show filename relative t
 let g:lightline#bufferline#unicode_symbols = 1        " Use fancy unicode symbols for various indicators
 let g:lightline#bufferline#modified = ''             " Default pencil is too ugly
 let g:lightline#bufferline#unnamed = '[No Name]'      " Default name when no buffer is opened
-let g:lightline#bufferline#shorten_path = 0           " Don't compress ~/my/folder/name to ~/m/f/n
+let g:lightline#bufferline#shorten_path = 1           " Don't compress ~/my/folder/name to ~/m/f/n
 
 "" }}}
 
@@ -342,20 +351,11 @@ let g:tagbar_compact   = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  deoplete                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set completeopt+=noselect
-set completeopt+=noinsert
-set completeopt-=preview
-"" For Nvim
-let g:python_host_skip_check=1
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_skip_check=1
-let g:python3_host_prog = '/usr/local/bin/python3'
-
 " Enable deoplete when InsertEnter. reduces almost 100+ms
 let g:deoplete#enable_at_startup = 0
 autocmd InsertEnter * call deoplete#enable()
 
-let g:deoplete#auto_complete_delay=300
+let g:deoplete#auto_complete_delay=200
 
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources.go = ['around']
@@ -364,17 +364,10 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
-"" tmuxcomplete
-let g:tmuxcomplete#trigger = ''
-
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = '~/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 let g:deoplete#sources#go#pointer=1
-
-"" autocomplete_swift
-autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
-autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
 
 "  neosnippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -397,6 +390,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               YouCompleteMe                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_auto_trigger = 1
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_global_ycm_extra_conf = ''
 
@@ -448,6 +442,34 @@ let g:ale_linters = {
 nmap ]a <Plug>(ale_next_wrap)
 nmap [a <Plug>(ale_previous_wrap)
 "" }}}
+
+""" vim-ruby {{{
+autocmd FileType ruby compiler ruby
+
+" if !exists( "*RubyEndToken" )
+
+"   function RubyEndToken()
+"     let current_line = getline( '.' )
+"     let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+"     let stuff_without_do = '^\s*\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)'
+"       let with_do = 'do\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
+
+"       if match(current_line, braces_at_end) >= 0
+"         return "\<CR>}\<C-O>O"
+"       elseif match(current_line, stuff_without_do) >= 0
+"         return "\<CR>end\<C-O>O"
+"       elseif match(current_line, with_do) >= 0
+"         return "\<CR>end\<C-O>O"
+"       else
+"         return "\<CR>"
+"       endif
+"     endfunction
+
+" endif
+
+" imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
+
+" }}}
 
 """ vim-go {{{
 " let g:go_fmt_autosave = 0
@@ -586,3 +608,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
 
+""" 'Chiel92/vim-autoformat' {{{
+noremap <F6> :Autoformat<CR>
+"" }}}
