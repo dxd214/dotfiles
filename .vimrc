@@ -4,7 +4,7 @@
 "                                vimrc for mjyi                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""" General  {{{
+""" General  {{{
 set nocompatible
 filetype plugin indent on
 syntax on
@@ -53,7 +53,7 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 " }}}
 
-"""  Plugins {{{
+""" Plugins {{{
 
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
@@ -80,14 +80,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'w0rp/ale'
 
-" For syntax highlight
-Plug 'cespare/vim-toml'
-Plug 'fatih/vim-go'
-Plug 'elzr/vim-json'
-Plug 'keith/swift.vim', {'for': 'swift'}
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
-
 Plug 'Chiel92/vim-autoformat'
+
+" For syntax 
+Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go'
 
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -102,14 +99,14 @@ Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim', {'for': 'vim'}
 Plug 'thalesmello/webcomplete.vim', {'commit': '410e17'}
 Plug 'zchee/deoplete-go', { 'do': 'make'}
-autocmd FileType c,cpp let b:deoplete_disable_auto_complete = 1
+" autocmd FileType c,cpp let b:deoplete_disable_auto_complete = 1
 
-function! BuildYCM(info)
-  if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer --go-completer
-  endif
-endfunction
-Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp'], 'do': function('BuildYCM') }
+" function! BuildYCM(info)
+"   if a:info.status == 'installed' || a:info.force
+"     !./install.py --clang-completer --go-completer
+"   endif
+" endfunction
+" Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp'], 'do': function('BuildYCM') }
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -358,7 +355,10 @@ autocmd InsertEnter * call deoplete#enable()
 let g:deoplete#auto_complete_delay=200
 
 let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['buffer']
 let g:deoplete#ignore_sources.go = ['around']
+let g:deoplete#ignore_sources.python = ['around']
+
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -387,14 +387,6 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               YouCompleteMe                                "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_auto_trigger = 1
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_global_ycm_extra_conf = ''
-
-"" }}}
 
 """ FZF  {{{
 " Make :Ag not match file names, only file contents
@@ -442,34 +434,6 @@ let g:ale_linters = {
 nmap ]a <Plug>(ale_next_wrap)
 nmap [a <Plug>(ale_previous_wrap)
 "" }}}
-
-""" vim-ruby {{{
-autocmd FileType ruby compiler ruby
-
-" if !exists( "*RubyEndToken" )
-
-"   function RubyEndToken()
-"     let current_line = getline( '.' )
-"     let braces_at_end = '{\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
-"     let stuff_without_do = '^\s*\(class\|if\|unless\|begin\|case\|for\|module\|while\|until\|def\)'
-"       let with_do = 'do\s*\(|\(,\|\s\|\w\)*|\s*\)\?$'
-
-"       if match(current_line, braces_at_end) >= 0
-"         return "\<CR>}\<C-O>O"
-"       elseif match(current_line, stuff_without_do) >= 0
-"         return "\<CR>end\<C-O>O"
-"       elseif match(current_line, with_do) >= 0
-"         return "\<CR>end\<C-O>O"
-"       else
-"         return "\<CR>"
-"       endif
-"     endfunction
-
-" endif
-
-" imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
-
-" }}}
 
 """ vim-go {{{
 " let g:go_fmt_autosave = 0
@@ -528,37 +492,6 @@ endfunction
 
 "" }}}
 
-""" Goyo  {{{
-function! s:goyo_enter()
-  if has('gui_running')
-    set fullscreen
-    set background=light
-    set linespace=7
-  elseif exists('$TMUX')
-    silent !tmux set status off
-  endif
-  "Limelight
-  let &l:statusline = '%M'
-  hi StatusLine ctermfg=red guifg=red cterm=NONE gui=NONE
-endfunction
-
-function! s:goyo_leave()
-  if has('gui_running')
-    set nofullscreen
-    set background=dark
-    set linespace=0
-  elseif exists('$TMUX')
-    silent !tmux set status on
-  endif
-  "Limelight!
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-nnoremap <Leader>G :Goyo<CR>
-
-"" }}}
-
 """ markdown  {{{
 """ Use command `:InstantMarkdownPreview` to trigger preview
 let g:instant_markdown_autostart = 0
@@ -610,4 +543,8 @@ nmap ga <Plug>(EasyAlign)
 
 """ 'Chiel92/vim-autoformat' {{{
 noremap <F6> :Autoformat<CR>
+"" }}}
+
+"""  {{{ 
+let g:polyglot_disabled = ['markdown']
 "" }}}
