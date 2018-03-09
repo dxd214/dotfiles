@@ -1,0 +1,138 @@
+" Plug 'itchyny/lightline.vim'                                          "   bottom bar
+" Plug 'mgee/lightline-bufferline'                                      "   top bar
+" Plug 'maximbaz/lightline-trailing-whitespace'                         "   Trailing whitespace indicator
+" Plug 'maximbaz/lightline-ale' 
+
+""" lightline {{{
+" \ 'separator': { 'left': '⮀', 'right': '' },
+" \ 'subseparator': { 'left': '', 'right': '' },
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'filename', 'fugitive' ], ['cwd'] ],
+      \   'right': [ [ 'linter_errors', 'linter_warnings', 'trailing', 'lineinfo' ], ['percent'], ["filetype"] ]
+      \ },
+      \ 'tabline': {
+      \   'left': [ [ 'buffers' ] ],
+      \   'right': [ [ 'close' ] ],
+      \ },
+      \ 'mode_map': {
+      \   'n' : 'N',
+      \   'i' : 'I',
+      \   'R' : 'R',
+      \   'v' : 'V',
+      \   'V' : 'V-LINE',
+      \   "\<C-v>": 'V-BLOCK',
+      \   'c' : 'C',
+      \   's' : 'S',
+      \   'S' : 'S-LINE',
+      \   "\<C-s>": 'S-BLOCK',
+      \   't': '',
+      \ },
+      \ 'component': {
+      \   'lineinfo': '⭡%3l:%-2v',
+      \   'cwd': '%{fnamemodify(getcwd(), ":~")}',
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightlineFugitive',
+      \   'filename': 'LightlineFilename',
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileencoding': 'LightlineFileencoding',
+      \   'mode': 'LightlineMode',
+      \ },
+      \ 'component_expand': {
+      \   'buffers': 'lightline#bufferline#buffers',
+      \   'trailing': 'lightline#trailing_whitespace#component',
+      \   'linter_warnings': 'lightline#ale#warnings',
+      \   'linter_errors': 'lightline#ale#errors',
+      \ },
+      \ 'component_type': {
+      \   'buffers': 'tabsel',
+      \   'trailing': 'error',
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error',
+      \ }
+      \ }
+
+function! LightlineModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+
+function! LightlineFilename()
+  let fname = expand('%:t')
+  return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+	\ fname == '__Tagbar__' ? g:lightline.fname :
+	\ fname =~ '__Gundo\|NERD_tree' ? '' :
+	\ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+	\ &ft == 'unite' ? unite#get_status_string() :
+	\ &ft == 'vimshell' ? vimshell#get_status_string() :
+	\ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+	\ ('' != fname ? fname : '[No Name]') .
+	\ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineReadonly()
+  return &readonly ? '' : ''
+endfunction
+
+function! LightlineFugitive()
+  try
+    if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+      let mark = '⭠'  " edit here for cool mark
+      let branch = fugitive#head()
+      return branch !=# '' ? mark.branch : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  let fname = expand('%:t')
+  return fname == '__Tagbar__' ? 'Tagbar' :
+	\ fname == '__Gundo__' ? 'Gundo' :
+	\ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+	\ fname =~ 'NERD_tree' ? 'NERDTree' :
+	\ &ft == 'unite' ? 'Unite' :
+	\ &ft == 'vimfiler' ? 'VimFiler' :
+	\ &ft == 'vimshell' ? 'VimShell' :
+	\ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+let g:tagbar_status_func = 'TagbarStatusFunc'
+
+function! TagbarStatusFunc(current, sort, fname, ...) abort
+  let g:lightline.fname = a:fname
+  return lightline#statusline(0)
+endfunction
+
+"""" Lightline ALE
+let g:lightline#ale#indicator_warnings = ' '
+let g:lightline#ale#indicator_errors = ' '
+
+"""" lightline-bufferline
+let g:lightline#bufferline#filename_modifier = ':~:.' " Show filename relative to current directory
+let g:lightline#bufferline#unicode_symbols = 1        " Use fancy unicode symbols for various indicators
+let g:lightline#bufferline#modified = ''             " Default pencil is too ugly
+let g:lightline#bufferline#unnamed = '[No Name]'      " Default name when no buffer is opened
+let g:lightline#bufferline#shorten_path = 0           " Don't compress ~/my/folder/name to ~/m/f/n
+
+"""" Lightline trailing whitespace
+let g:lightline#trailing_whitespace#indicator = '•'
+
+"" }}}
+
