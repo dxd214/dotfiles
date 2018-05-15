@@ -86,6 +86,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 
+" Auto Complete
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 if has('nvim')
@@ -97,8 +98,9 @@ else
 endif
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim', {'for': 'vim'}
-Plug 'thalesmello/webcomplete.vim', {'commit': '410e17'}
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'Rip-Rip/clang_complete'
+" Plug 'thalesmello/webcomplete.vim', {'commit': '410e17'}
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -361,6 +363,10 @@ let g:deoplete#sources#go#gocode_binary = '~/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 let g:deoplete#sources#go#pointer=1
 
+" c/c++
+let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
+
+
 "  neosnippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -540,3 +546,4 @@ noremap <F6> :Autoformat<CR>
 """  {{{ 
 let g:polyglot_disabled = ['markdown']
 "" }}}
+

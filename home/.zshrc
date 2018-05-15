@@ -38,6 +38,7 @@ alias l='ls -alF'
 alias ll='ls -l'
 # alias vi='vim'
 alias which='type -p'
+alias sp='swift package'
 
 # Git
 alias ga='git add'
@@ -76,7 +77,6 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 #
 export MonkeyDevDeviceIP=
 export PATH=/opt/MonkeyDev/bin:$PATH
-eval "$(rbenv init -)"
 
 # fzf
 #
@@ -88,8 +88,15 @@ source ~/.tmuxinator/completion/tmuxinator.zsh
 alias mux=tmuxinator
 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH="/usr/local/opt/python@2/bin:$PATH"
+# export PATH="/usr/local/opt/python@2/bin:$PATH"
+# fpath=(~/.zsh $fpath)
+
+export PATH="/usr/local/opt/node@8/bin:$PATH"
+
+# Flutter
+export PATH="/Users/mervin/development/flutter/bin:$PATH"
+

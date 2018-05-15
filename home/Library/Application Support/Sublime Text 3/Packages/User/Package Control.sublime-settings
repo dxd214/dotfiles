@@ -7,11 +7,13 @@
 	[
 		"Anaconda",
 		"AutoFileName",
+		"Babel",
 		"ConvertToUTF8",
 		"GitGutter",
 		"HTML-CSS-JS Prettify",
 		"Markdown Preview",
 		"Package Control",
-		"SideBarEnhancements"
+		"SideBarEnhancements",
+		"Swift"
 	]
 }

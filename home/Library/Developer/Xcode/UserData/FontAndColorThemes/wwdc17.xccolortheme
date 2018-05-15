@@ -5,23 +5,23 @@
 	<key>DVTConsoleDebuggerInputTextColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTConsoleDebuggerInputTextFont</key>
-	<string>SFMono-Bold - 13.0</string>
+	<string>SFMono-Bold - 14.0</string>
 	<key>DVTConsoleDebuggerOutputTextColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTConsoleDebuggerOutputTextFont</key>
-	<string>SFMono-Regular - 13.0</string>
+	<string>SFMono-Regular - 14.0</string>
 	<key>DVTConsoleDebuggerPromptTextColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTConsoleDebuggerPromptTextFont</key>
-	<string>SFMono-Bold - 13.0</string>
+	<string>SFMono-Bold - 14.0</string>
 	<key>DVTConsoleExectuableInputTextColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTConsoleExectuableInputTextFont</key>
-	<string>SFMono-Regular - 13.0</string>
+	<string>SFMono-Regular - 14.0</string>
 	<key>DVTConsoleExectuableOutputTextColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTConsoleExectuableOutputTextFont</key>
-	<string>SFMono-Bold - 13.0</string>
+	<string>SFMono-Bold - 14.0</string>
 	<key>DVTConsoleTextBackgroundColor</key>
 	<string>0.999999 0.999974 0.999991 1</string>
 	<key>DVTConsoleTextInsertionPointColor</key>
@@ -31,7 +31,7 @@
 	<key>DVTDebuggerInstructionPointerColor</key>
 	<string>0.705882 0.8 0.545098 1</string>
 	<key>DVTFontSizeModifier</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>DVTLineSpacing</key>
 	<real>1.1000000238418579</real>
 	<key>DVTMarkupTextBackgroundColor</key>
@@ -39,37 +39,37 @@
 	<key>DVTMarkupTextBorderColor</key>
 	<string>0.8832 0.8832 0.8832 1</string>
 	<key>DVTMarkupTextCodeFont</key>
-	<string>SFMono-Regular - 12.0</string>
+	<string>SFMono-Regular - 13.0</string>
 	<key>DVTMarkupTextEmphasisColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextEmphasisFont</key>
-	<string>.AppleSystemUIFont - 12.0</string>
+	<string>.AppleSystemUIFont - 13.0</string>
 	<key>DVTMarkupTextInlineCodeColor</key>
 	<string>0 0 0 0.7</string>
 	<key>DVTMarkupTextLinkColor</key>
 	<string>0.055 0.055 1 1</string>
 	<key>DVTMarkupTextLinkFont</key>
-	<string>.AppleSystemUIFont - 12.0</string>
+	<string>.AppleSystemUIFont - 13.0</string>
 	<key>DVTMarkupTextNormalColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextNormalFont</key>
-	<string>.AppleSystemUIFont - 12.0</string>
+	<string>.AppleSystemUIFont - 13.0</string>
 	<key>DVTMarkupTextOtherHeadingColor</key>
 	<string>0 0 0 0.5</string>
 	<key>DVTMarkupTextOtherHeadingFont</key>
-	<string>.AppleSystemUIFont - 16.0</string>
+	<string>.AppleSystemUIFont - 17.0</string>
 	<key>DVTMarkupTextPrimaryHeadingColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextPrimaryHeadingFont</key>
-	<string>.AppleSystemUIFont - 26.0</string>
+	<string>.AppleSystemUIFont - 27.0</string>
 	<key>DVTMarkupTextSecondaryHeadingColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextSecondaryHeadingFont</key>
-	<string>.AppleSystemUIFont - 20.0</string>
+	<string>.AppleSystemUIFont - 21.0</string>
 	<key>DVTMarkupTextStrongColor</key>
 	<string>0 0 0 1</string>
 	<key>DVTMarkupTextStrongFont</key>
-	<string>.AppleSystemUIFont - 12.0</string>
+	<string>.AppleSystemUIFont - 13.0</string>
 	<key>DVTSourceTextBackground</key>
 	<string>0.180336 0.193491 0.204938 1</string>
 	<key>DVTSourceTextBlockDimBackgroundColor</key>
@@ -134,51 +134,51 @@
 	<key>DVTSourceTextSyntaxFonts</key>
 	<dict>
 		<key>xcode.syntax.attribute</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.character</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.comment</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.comment.doc</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.comment.doc.keyword</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.class</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.class.system</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.constant</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.constant.system</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.function</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.function.system</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.macro</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.macro.system</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.type</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.type.system</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.variable</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.identifier.variable.system</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.keyword</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.number</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.plain</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.preprocessor</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.string</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 		<key>xcode.syntax.url</key>
-		<string>SFMono-Regular - 15.0</string>
+		<string>FiraCode-Retina - 16.0</string>
 	</dict>
 </dict>
 </plist>
