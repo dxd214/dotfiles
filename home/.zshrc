@@ -23,6 +23,39 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# golang env
+#
+export GOROOT=/usr/local/opt/go/libexec
+
+# GOPATH为上面创建的目录路径
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# MonkeyDev path
+#
+export MonkeyDevDeviceIP=
+export PATH=/opt/MonkeyDev/bin:$PATH
+
+# theos
+export THEOS=/opt/theos 
+export PATH=/opt/theos/bin/:$PATH
+
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# export PATH="/usr/local/opt/python@2/bin:$PATH"
+# fpath=(~/.zsh $fpath)
+
+export PATH="/usr/local/opt/node@8/bin:$PATH"
+
+# Flutter
+export PATH="/Users/mervin/development/flutter/bin:$PATH"
+
+
+
 # Set personal aliases
 alias vim=nvim
 alias c=clear
@@ -63,21 +96,6 @@ alias gpo='git push origin'
 alias gpot='git push origin --tags'
 alias gpom='git push origin master'
 
-
-# golang env
-#
-export GOROOT=/usr/local/opt/go/libexec
-
-# GOPAT为上面创建的目录路径
-
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
-# MonkeyDev path
-#
-export MonkeyDevDeviceIP=
-export PATH=/opt/MonkeyDev/bin:$PATH
-
 # fzf
 #
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -88,15 +106,19 @@ source ~/.tmuxinator/completion/tmuxinator.zsh
 alias mux=tmuxinator
 
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#alias for cnpm
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+  --cache=$HOME/.npm/.cache/cnpm \
+  --disturl=https://npm.taobao.org/dist \
+  --userconfig=$HOME/.cnpmrc"
 
-# export PATH="/usr/local/opt/python@2/bin:$PATH"
-# fpath=(~/.zsh $fpath)
 
-export PATH="/usr/local/opt/node@8/bin:$PATH"
+# alias jupyter
+alias note-jupyter="jupyter notebook Code/py"
 
-# Flutter
-export PATH="/Users/mervin/development/flutter/bin:$PATH"
+export MonkeyDevPath=/opt/MonkeyDev
+
+# proxy
+export http_proxy=http://127.0.0.1:7777
+export https_proxy=http://127.0.0.1:7777
 

@@ -5,15 +5,11 @@
 	],
 	"installed_packages":
 	[
-		"Anaconda",
 		"AutoFileName",
-		"Babel",
+		"Codecs33",
 		"ConvertToUTF8",
-		"GitGutter",
-		"HTML-CSS-JS Prettify",
-		"Markdown Preview",
+		"GoSublime",
 		"Package Control",
-		"SideBarEnhancements",
-		"Swift"
+		"TOML"
 	]
 }

@@ -1,7 +1,7 @@
 # ~/.tmuxinator/blog.yml
 
 name: blog
-root: ~/Desktop/mjyiRepos/blog.blanK
+root: ~/Coding/mjyiRepos/blog.blanK
 
 # Optional tmux socket
 # socket_name: foo

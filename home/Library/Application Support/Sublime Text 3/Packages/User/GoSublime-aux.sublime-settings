@@ -1,0 +1,48 @@
+{
+	"9o.hist./Users/mervin/Downloads/example.v2/src/gopcp.v2/chapter3/signal":
+	[
+		"help",
+		"run",
+		"reset",
+		"pwd",
+		"replay"
+	],
+	"9o.hist./Users/mervin/go/src/github.com/mjyi/learngo/channel/chanbase/v2":
+	[
+		"run"
+	],
+	"9o.hist./Users/mervin/go/src/github.com/mjyi/learngo/channel/chanbase1":
+	[
+		"run"
+	],
+	"9o.hist./Users/mervin/go/src/github.com/mjyi/learngo/channel/chanval":
+	[
+		"run"
+	],
+	"9o.hist./Users/mervin/go/src/github.com/mjyi/learngo/channel/chanval/v2":
+	[
+		"run"
+	],
+	"9o.hist./Users/mervin/go/src/github.com/mjyi/learngo/channel/tickercase":
+	[
+		"reset",
+		"run"
+	],
+	"9o.hist./Users/mervin/go/src/github.com/mjyi/learngo/sync/once":
+	[
+		"run"
+	],
+	"9o.hist./Users/mervin/go/src/github.com/mjyi/learngo/timeout":
+	[
+		"pwd",
+		"go run"
+	],
+	"9o.hist./Users/mervin/go/src/workspace/learngo/struct_tag":
+	[
+		"help",
+		"exit"
+	],
+	"ann": "a18.07.31-1",
+	"install_version": "r18.07.22-1",
+	"version": "r18.07.22-1"
+}
