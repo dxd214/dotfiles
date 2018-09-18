@@ -1,0 +1,5 @@
+2018/08/27-09:28:47.070818 700008eb4000 Log #748: 0 ops saved to Table #750 OK
+2018/08/27-09:28:47.071120 700008eb4000 Archiving /Users/mervin/Library/Rime/wubi86.userdb/000748.log: OK
+2018/08/27-09:28:47.076474 700008eb4000 Table #749: 18210 entries OK
+2018/08/27-09:28:47.077032 700008eb4000 Archiving /Users/mervin/Library/Rime/wubi86.userdb/MANIFEST-000747: OK
+2018/08/27-09:28:47.077728 700008eb4000 **** Repaired leveldb /Users/mervin/Library/Rime/wubi86.userdb; recovered 1 files; 880611 bytes. Some data may have been lost. ****

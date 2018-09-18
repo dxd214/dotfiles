@@ -385,7 +385,7 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = '~/go/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#sort_class = []
 let g:deoplete#sources#go#pointer=1
 
 " c/c++
@@ -459,7 +459,7 @@ nmap [a <Plug>(ale_previous_wrap)
 "" }}}
 
 """ vim-go {{{
-" let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 0
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"

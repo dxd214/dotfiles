@@ -180,10 +180,10 @@ style:
   candidate_format: "%c. %@ "
   color_scheme: rime_dark
   corner_radius: 7
-  font_point: 18
+  font_point: 16
   horizontal: false
   inline_preedit: true
-  label_font_point: 14
+  label_font_point: 15
   line_spacing: 1
   spacing: 0
 us_keyboard_layout: false

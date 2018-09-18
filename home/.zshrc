@@ -122,3 +122,13 @@ export MonkeyDevPath=/opt/MonkeyDev
 export http_proxy=http://127.0.0.1:7777
 export https_proxy=http://127.0.0.1:7777
 
+
+# qt
+export PATH="/usr/local/opt/qt/bin:$PATH"
+# For compilers to find qt you may need to set:
+export LDFLAGS="-L/usr/local/opt/qt/lib"
+export CPPFLAGS="-I/usr/local/opt/qt/include"
+
+# For pkg-config to find qt you may need to set:
+export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
+

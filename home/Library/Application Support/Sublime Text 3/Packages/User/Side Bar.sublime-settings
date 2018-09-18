@@ -1,7 +1,0 @@
-{
-	"disabled_menuitem_edit": true,
-	"disabled_menuitem_open_in_browser": true,
-	"default_browser": "chrome",
-	"open_all_browsers": ["chrome", "safari", "firefox"], //any of this list: firefox, chrome, canary, chromium, opera, safari, ie, edge
-
-}
