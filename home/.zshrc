@@ -5,55 +5,64 @@ export TERM="xterm-256color"
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+export EDITOR='nvim'
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # golang env
-#
 export GOROOT=/usr/local/opt/go/libexec
-
 # GOPATH为上面创建的目录路径
-
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # MonkeyDev path
-#
 export MonkeyDevDeviceIP=
 export PATH=/opt/MonkeyDev/bin:$PATH
+export MonkeyDevPath=/opt/MonkeyDev
 
 # theos
 export THEOS=/opt/theos 
 export PATH=/opt/theos/bin/:$PATH
 
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# export PATH="/usr/local/opt/python@2/bin:$PATH"
-# fpath=(~/.zsh $fpath)
-
-export PATH="/usr/local/opt/node@8/bin:$PATH"
 
 # Flutter
 export PATH="/Users/mervin/development/flutter/bin:$PATH"
 
+# NVM
+export NVM_DIR="/Users/mervin/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
+export PATH=/Users/mervin/.nvm/versions/node/v10.14.1/bin/:$PATH
+## 启动时通过更改node 版本号加载，减少启动时间
+
+
+# Rust
+export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
+export RUSTUP_UPDATE_ROOT="https://mirrors.ustc.edu.cn/rust-static/rustup"
+source $HOME/.cargo/env
+
+
+# QT
+export PATH="/usr/local/opt/qt/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/qt/lib"
+export CPPFLAGS="-I/usr/local/opt/qt/include"
+export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
+
+
+# fzf
+#
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# tmuxinator
+#
+source ~/.tmuxinator/completion/tmuxinator.zsh
+alias mux=tmuxinator
 
 
 # Set personal aliases
@@ -72,6 +81,7 @@ alias ll='ls -l'
 # alias vi='vim'
 alias which='type -p'
 alias sp='swift package'
+
 
 # Git
 alias ga='git add'
@@ -96,39 +106,9 @@ alias gpo='git push origin'
 alias gpot='git push origin --tags'
 alias gpom='git push origin master'
 
-# fzf
-#
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Proxy
+alias hproxy="export http_proxy=http://127.0.0.1:7777;export https_proxy=http://127.0.0.1:7777"
 
-# tmuxinator
-#
-source ~/.tmuxinator/completion/tmuxinator.zsh
-alias mux=tmuxinator
-
-
-#alias for cnpm
-alias cnpm="npm --registry=https://registry.npm.taobao.org \
-  --cache=$HOME/.npm/.cache/cnpm \
-  --disturl=https://npm.taobao.org/dist \
-  --userconfig=$HOME/.cnpmrc"
-
-
-# alias jupyter
-alias note-jupyter="jupyter notebook Code/py"
-
-export MonkeyDevPath=/opt/MonkeyDev
-
-# proxy
-export http_proxy=http://127.0.0.1:7777
-export https_proxy=http://127.0.0.1:7777
-
-
-# qt
-export PATH="/usr/local/opt/qt/bin:$PATH"
-# For compilers to find qt you may need to set:
-export LDFLAGS="-L/usr/local/opt/qt/lib"
-export CPPFLAGS="-I/usr/local/opt/qt/include"
-
-# For pkg-config to find qt you may need to set:
-export PKG_CONFIG_PATH="/usr/local/opt/qt/lib/pkgconfig"
-
+# Cargo
+alias cr='cargo run'
+alias cf='cargo fmt'

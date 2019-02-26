@@ -16,8 +16,8 @@ syntax on
 let &fillchars="vert:|,fold: ,diff: "
 set cursorline
 set diffopt=filler,vertical
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab smarttab
 set hidden
 set ignorecase smartcase
@@ -61,8 +61,6 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 """ Plugins {{{
 
 call plug#begin('~/.vim/plugged')
-" Plug 'morhetz/gruvbox'
-" Plug 'junegunn/seoul256.vim'
 Plug 'connorholyday/vim-snazzy'
 Plug 'joshdick/onedark.vim'
 Plug 'mhinz/vim-startify'
@@ -85,29 +83,24 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 Plug 'Chiel92/vim-autoformat'
 
 " For syntax 
 Plug 'sheerun/vim-polyglot'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'rust-lang/rust.vim'
 
-" Auto Complete
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'Shougo/neco-syntax'
-Plug 'Shougo/neco-vim', {'for': 'vim'}
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'Rip-Rip/clang_complete'
-" Plug 'thalesmello/webcomplete.vim', {'commit': '410e17'}
+
+function! BuildYCM(info)
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer --rust-completer
+  endif
+endfunction
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -362,53 +355,16 @@ let g:tagbar_compact   = 1
 
 "" }}}
 
-""" Autocomplete {{{
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                  deoplete                                  "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable deoplete when InsertEnter. reduces almost 100+ms
-let g:deoplete#enable_at_startup = 0
-autocmd InsertEnter * call deoplete#enable()
+""" YCM {{{
 
-let g:deoplete#auto_complete_delay=200
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 
-let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ['buffer']
-let g:deoplete#ignore_sources.go = ['around']
-let g:deoplete#ignore_sources.python = ['around']
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-
-" deoplete-go
-let g:deoplete#sources#go#gocode_binary = '~/go/bin/gocode'
-let g:deoplete#sources#go#sort_class = []
-let g:deoplete#sources#go#pointer=1
-
-" c/c++
-let g:clang_library_path="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib"
-
-
-"  neosnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-imap <expr><TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ neosnippet#jumpable() ?
-  \    "\<Plug>(neosnippet_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#jumpable() ?
-\ "\<Plug>(neosnippet_jump)" : "\<TAB>"
-
-let g:neosnippet#snippets_directory='~/.vim/snippets'
-
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+"" }}}
 
 
 """ FZF  {{{
@@ -440,80 +396,6 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 "" }}}
 
-""" ALE {{{
-" let g:ale_sign_error = '>'
-" let g:ale_sign_warning = '-'
-let g:ale_completion_enabled = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_swift_swiftlint_use_defaults = 1
-let g:ale_open_list = 0
-let g:ale_lint_delay = 1000
-let g:ale_linters = {
-      \ 'go': ['golint', 'go vet', 'go build'],
-      \ }
-
-nmap ]a <Plug>(ale_next_wrap)
-nmap [a <Plug>(ale_previous_wrap)
-"" }}}
-
-""" vim-go {{{
-let g:go_fmt_autosave = 0
-let g:go_fmt_command = "goimports"
-let g:go_autodetect_gopath = 1
-let g:go_list_type = "quickfix"
-let g:go_term_mode = "split"
-let g:go_term_height = 15
-let g:go_term_width = 10
-
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_operators = 1
-
-augroup go
-  autocmd!
-  " Show by default 4 spaces for a tab
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-  " :GoBuild and :GoTestCompile
-  autocmd FileType go nmap <leader><leader>b :<C-u>call <SID>build_go_files()<CR>
-  " :GoTest
-  autocmd FileType go nmap <leader>t  <Plug>(go-test)
-  " :GoRun
-  autocmd FileType go nmap <leader>r  <Plug>(go-run)
-  " :GoDoc
-  autocmd FileType go nmap <Leader>d <Plug>(go-doc)
-  " :GoCoverageToggle
-  " autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
-  " :GoInfo
-  " autocmd FileType go nmap <Leader>i <Plug>(go-info)
-  " :GoMetaLinter
-  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
-  " :GoDef but opens in a vertical split
-  autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
-  " :GoDef but opens in a horizontal split
-  autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
-  " :GoAlternate  commands :A, :AV, :AS and :AT
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-augroup END
-
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-"" }}}
 
 """ markdown  {{{
 """ Use command `:InstantMarkdownPreview` to trigger preview

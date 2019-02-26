@@ -3,6 +3,7 @@ patch:
     page_size: 7
   schema_list:
     - schema: wubi86
+    - schema: luna_pinyin_simp
 
   "key_binder/bindings/@before 0": {accept: Escape, toggle: ascii_mode, when: always}
   ascii_composer/good_old_caps_lock: false # capslock 键切换英文并输出小写
@@ -16,12 +17,12 @@ patch:
 
   switcher:
     abbreviate_options: true
-    caption: "〔方案選單〕"
+    caption: ""
     fold_options: false # 选项菜单是否折叠显示
     hotkeys:
       # - "Control+grave"
       # - "Control+Shift+grave"
-      - "Control+s"
+      - "Control+Shift+s"
     option_list_separator: "／"
     save_options:
       - full_shape

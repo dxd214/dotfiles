@@ -6,8 +6,8 @@ ascii_composer:
     Control_R: noop
     Shift_L: commit_code
     Shift_R: noop
-config_version: 0.37.minimal.custom.3869241013
-customization: 3869241013
+config_version: 0.37.minimal.custom.4247094439
+customization: 4247094439
 key_binder:
   bindings:
     - {accept: Escape, toggle: ascii_mode, when: always}
@@ -120,12 +120,13 @@ recognizer:
     url: "^(www[.]|https?:|ftp[.:]|mailto:|file:).*$|^[a-z]+[.].+$"
 schema_list:
   - schema: wubi86
+  - schema: luna_pinyin_simp
 switcher:
   abbreviate_options: true
-  caption: "〔方案選單〕"
+  caption: ""
   fold_options: false
   hotkeys:
-    - "Control+s"
+    - "Control+Shift+s"
   option_list_separator: "／"
   save_options:
     - full_shape

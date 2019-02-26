@@ -1,4 +1,4 @@
-customization: 3518878975
+customization: 3046765996
 engine:
   processors:
     - ascii_composer
@@ -70,21 +70,11 @@ schema:
     
   name: "五笔86"
   schema_id: wubi86
-  version: 0.21.custom.3518878975
+  version: 0.21.custom.3046765996
 speller:
   auto_select: true
   auto_select_unique_candidate: true
   max_code_length: 4
-switches:
-  - name: ascii_mode
-    reset: 0
-    states: ["中文", "西文"]
-  - name: full_shape
-    states: ["半角", "全角"]
-  - name: extended_charset
-    states: ["常用", "增廣"]
-  - name: ascii_punct
-    states: ["。，", "．，"]
 translator:
   dictionary: wubi86.extended
   disable_user_dict_for_patterns:
